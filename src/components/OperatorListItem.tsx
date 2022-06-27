@@ -1,5 +1,6 @@
 import React from "react";
 import { OperatorListItemProps } from "../interfaces/interfaces";
+import OperatorListItemButton from "../styles/components/button/OperatorListItemButton";
 
 const OperatorListItem: React.FC<OperatorListItemProps> = ({
   item,
@@ -17,9 +18,9 @@ const OperatorListItem: React.FC<OperatorListItemProps> = ({
 
   return (
     <li className="section-mobile-pay-list__item">
-      <button type="button" onClick={getData}>
+      <OperatorListItemButton type="button" onClick={getData}>
         {item.name_operator}
-      </button>
+      </OperatorListItemButton>
     </li>
   );
 };

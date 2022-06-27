@@ -1,7 +1,7 @@
 import React from "react";
 import OperatorList from "./components/OperatorList";
 import { settingsMobilePayData } from "./interfaces/interfaces";
-import "./styles/App.css";
+import Container from "./styles/global/Container";
 
 const App: React.FC = () => {
   const operators: Array<settingsMobilePayData> = [
@@ -12,9 +12,9 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <div className="container">
+      <Container>
         <OperatorList title="Выберите оператора" operators={operators} />
-      </div>
+      </Container>
     </div>
   );
 };

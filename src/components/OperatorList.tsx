@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import OperatorListItem from "./OperatorListItem";
 import FormPay from "./FormPay";
 import { OperatorListProps } from "../interfaces/interfaces";
+import Title from "../styles/components/title/Title";
+import FormMobilePayment from "../styles/components/form/FormMobilePayment";
 
 const OperatorList: React.FC<OperatorListProps> = ({ title, operators }) => {
   const [pages, setPages] = useState(false);
@@ -21,11 +23,9 @@ const OperatorList: React.FC<OperatorListProps> = ({ title, operators }) => {
 
   if (!pages) {
     return (
-      <section className="section-mobile-pay">
-        <div className="section-mobile-pay__title">
-          <h2>{title}</h2>
-        </div>
-        <ul className="section-mobile-pay-list">
+      <FormMobilePayment>
+        <Title>{title}</Title>
+        <ul>
           {operators.map((item) => (
             <OperatorListItem
               switchPages={setPages}
@@ -35,7 +35,7 @@ const OperatorList: React.FC<OperatorListProps> = ({ title, operators }) => {
             />
           ))}
         </ul>
-      </section>
+      </FormMobilePayment>
     );
   } else {
     return <FormPay sendData={dataUser} switchPages={setPages}></FormPay>;
