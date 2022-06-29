@@ -1,14 +1,14 @@
 import * as yup from "yup";
 
 const validationShema = yup.object().shape({
-  phoneNumber: yup
+  phoneInput: yup
     .number()
-    .typeError("Некорректный номер телефона")
-    .required("Обязательно для заполнения"),
-  pay: yup
+    .required("Обязательно для заполнения")
+    .typeError("Некорректный номер телефона"),
+  payInput: yup
     .number()
-    .min(1, "Минимальная сумма пополнения 1 р.")
-    .max(1000, "Максимальная сумма пополнения 1000 р.")
+    .min(1, "Минимальная сумма оплаты 1р")
+    .max(1000, "Максимальная сумма пополнения 1000р")
     .typeError("Некорректная сумма оплаты")
     .required("Обязательно для заполнения"),
 });

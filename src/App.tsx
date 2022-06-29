@@ -11,11 +11,9 @@ const App: React.FC = () => {
   ];
 
   return (
-    <div className="App">
-      <Container>
-        <OperatorList title="Выберите оператора" operators={operators} />
-      </Container>
-    </div>
+    <Container>
+      <OperatorList title="Выберите оператора" operators={operators} />
+    </Container>
   );
 };
 

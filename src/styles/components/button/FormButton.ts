@@ -5,6 +5,7 @@ const FormButton = styled.button`
   background: #fff;
   width: 120px;
   height: 40px;
+  margin: 30px 15px 0 0;
 
   :hover {
     color: white;

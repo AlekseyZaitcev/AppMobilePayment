@@ -4,11 +4,11 @@ import { Formik, Form } from "formik";
 import validationSchema from "./validationSchemas/ValidationSchema";
 import { FormPayProps } from "../interfaces/interfaces";
 import FormButton from "../styles/components/button/FormButton";
-import MaskedInput from "react-input-mask";
 import Title from "../styles/components/title/Title";
 import Error from "../styles/errors/Error";
 import FormMobilePayment from "../styles/components/form/FormMobilePayment";
 import SuccessMessage from "../styles/success/SuccessMessage";
+import InputForm from "../styles/components/input/MaskedInput";
 
 const FormPay: React.FC<FormPayProps> = ({ switchPages, sendData }) => {
   const [isDataSended, setIsDataSended] = useState<boolean | undefined>();
@@ -21,7 +21,7 @@ const FormPay: React.FC<FormPayProps> = ({ switchPages, sendData }) => {
   if (isCorrectOperatorsData) {
     return (
       <FormMobilePayment>
-        <Title>Необходимо выбрать оператора!</Title>
+        <Title>Выберите оператора!</Title>
         <FormButton type="button" onClick={() => switchPages(false)}>
           Назад
         </FormButton>
@@ -32,7 +32,7 @@ const FormPay: React.FC<FormPayProps> = ({ switchPages, sendData }) => {
       <FormMobilePayment>
         <Title>{sendData.name_operator}</Title>
         <Formik
-          initialValues={{ phoneNumber: "", pay: "" }}
+          initialValues={{ phoneInput: "", payInput: "" }}
           validateOnBlur
           onSubmit={() => {
             if (Math.floor(Math.random() * 2)) {
@@ -56,29 +56,31 @@ const FormPay: React.FC<FormPayProps> = ({ switchPages, sendData }) => {
             isValid,
           }) => (
             <Form>
-              <MaskedInput
+              <InputForm
                 mask={"+7 \\ 999 999 99 99"}
                 alwaysShowMask={true}
                 type="tel"
-                name="phoneNumber"
+                name="phoneInput"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.phoneNumber}
+                value={values.phoneInput}
                 placeholder="Введите номер телефона"
               />
-              {touched.phoneNumber && errors.phoneNumber && (
-                <Error>{errors.phoneNumber}</Error>
+              {touched.phoneInput && errors.phoneInput && (
+                <Error>{errors.phoneInput}</Error>
               )}
-              <MaskedInput
+              <InputForm
                 mask={""}
-                type="text"
-                name="pay"
+                type="number"
+                name="payInput"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.pay}
+                value={values.payInput}
                 placeholder="Введите сумму от 1Р до 1000Р"
               />
-              {touched.pay && errors.pay && <Error>{errors.pay}</Error>}
+              {touched.payInput && errors.payInput && (
+                <Error>{errors.payInput}</Error>
+              )}
               <FormButton
                 type="submit"
                 disabled={!isValid || isDataSended}
@@ -90,9 +92,7 @@ const FormPay: React.FC<FormPayProps> = ({ switchPages, sendData }) => {
                 Назад
               </FormButton>
               {isDataSended === true && (
-                <SuccessMessage>
-                  Пополнение успешно выполнено! Переходим на главную страницу
-                </SuccessMessage>
+                <SuccessMessage>Пополнение успешно выполнено!</SuccessMessage>
               )}
               {isDataSended === false && (
                 <Error>Ошибка отправки данных. Попробуйте ещё раз!</Error>

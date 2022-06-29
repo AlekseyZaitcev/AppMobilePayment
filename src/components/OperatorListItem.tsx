@@ -17,7 +17,7 @@ const OperatorListItem: React.FC<OperatorListItemProps> = ({
   };
 
   return (
-    <li className="section-mobile-pay-list__item">
+    <li>
       <OperatorListItemButton type="button" onClick={getData}>
         {item.name_operator}
       </OperatorListItemButton>

@@ -6,7 +6,8 @@ import Title from "../styles/components/title/Title";
 import FormMobilePayment from "../styles/components/form/FormMobilePayment";
 
 const OperatorList: React.FC<OperatorListProps> = ({ title, operators }) => {
-  const [pages, setPages] = useState(false);
+  const [IsOperatorPageOpen, setIsOperatorPageOpen] = useState(false);
+
   const [dataUser, setDataUser] = useState({
     id_operator: 0,
     name_operator: "",
@@ -21,14 +22,14 @@ const OperatorList: React.FC<OperatorListProps> = ({ title, operators }) => {
     setDataUser(data);
   };
 
-  if (!pages) {
+  if (!IsOperatorPageOpen) {
     return (
       <FormMobilePayment>
         <Title>{title}</Title>
         <ul>
           {operators.map((item) => (
             <OperatorListItem
-              switchPages={setPages}
+              switchPages={setIsOperatorPageOpen}
               item={item}
               key={item.id_operator}
               getDataUser={getDataUser}
@@ -38,7 +39,12 @@ const OperatorList: React.FC<OperatorListProps> = ({ title, operators }) => {
       </FormMobilePayment>
     );
   } else {
-    return <FormPay sendData={dataUser} switchPages={setPages}></FormPay>;
+    return (
+      <FormPay
+        sendData={dataUser}
+        switchPages={setIsOperatorPageOpen}
+      ></FormPay>
+    );
   }
 };
 
